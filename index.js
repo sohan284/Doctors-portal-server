@@ -51,6 +51,12 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
           res.send(services);
 
         })
+        app.get('/booking', async (req,res)=>{
+          const patient = req.query.patient ;
+          const query = {patient:patient};
+          const bookings = await bookingCollection.find(query).toArray();
+          res.send(bookings);
+        })
 
         app.get('/booking', async(req, res) =>{
           const patient = req.query.patient;
